@@ -147,6 +147,7 @@
                   <include>**/*Test.java</include>
                   <include>**/Test*.java</include>
                 </includes>
+                <reportsDirectory>${project.parent.basedir}/target/surefire-reports</reportsDirectory>
               </configuration>
             </plugin>
           </plugins>
@@ -167,6 +168,7 @@
                   <include>**/*IT.java</include>
                   <include>**/IT*.java</include>
                 </includes>
+                <reportsDirectory>${project.parent.basedir}/target/surefire-reports</reportsDirectory>
               </configuration>
             </plugin>
           </plugins>
