@@ -3,17 +3,23 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh "mvn clean install -DskipTests"
+        withMaven(mavenLocalRepo: '.repository') {
+          sh "mvn -B -DskipTests clean package"
+        }
       }
     }
     stage('UT') {
       steps {
-        sh "mvn test -P ut"
+        withMaven(mavenLocalRepo: '.repository') {
+          sh "mvn test -P ut"
+        }
       }
     }
     stage('IT') {
       steps {
-        sh "mvn verify -P it"
+        withMaven(mavenLocalRepo: '.repository') {
+          sh "mvn verify -P it"
+        }
       }
     }
     stage('Deployment') {
