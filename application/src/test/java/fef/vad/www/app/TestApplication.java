@@ -1,9 +1,9 @@
 package fef.vad.www.app;
 
-import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@Log
+@Slf4j
 @SpringBootApplication
 public class TestApplication {
   private static int count = 0;
