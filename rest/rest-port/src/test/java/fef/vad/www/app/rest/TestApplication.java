@@ -1,4 +1,4 @@
-package fef.vad.www.app;
+package fef.vad.www.app.rest;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,4 +17,5 @@ public class TestApplication {
       throw new RuntimeException(String.format("Only %d test context are authorized.", max_context_count));
     }
   }
+
 }

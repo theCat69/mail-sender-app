@@ -14,7 +14,7 @@
   <dependencies>
     <dependency>
       <groupId>fef.vad.www</groupId>
-      <artifactId>mail-interfaces</artifactId>
+      <artifactId>core</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
@@ -25,7 +25,11 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>${mapstruct.version}</version>
+    </dependency>
   </dependencies>
-
 
 </project>

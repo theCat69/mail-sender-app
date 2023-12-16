@@ -26,7 +26,7 @@ pipeline {
       steps {
         script {
           echo "Git branch : ${env.GIT_BRANCH}"
-          if(env.GIT_BRANCH == "main") {
+          if (env.GIT_BRANCH == "main") {
             echo "Deploying ..."
             echo "Deploy success"
           } else {

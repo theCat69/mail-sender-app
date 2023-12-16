@@ -9,4 +9,16 @@
   <artifactId>core</artifactId>
   <packaging>jar</packaging>
 
+  <dependencies>
+    <dependency>
+      <groupId>fef.vad.www</groupId>
+      <artifactId>mail-interfaces</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>fef.vad.www</groupId>
+      <artifactId>rest-interfaces</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
 </project>
