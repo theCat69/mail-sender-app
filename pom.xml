@@ -31,7 +31,6 @@
     <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
     <spring-boot.version>3.2.0</spring-boot.version>
     <mapstruct.version>1.5.5.Final</mapstruct.version>
-    <easy-random-core.version>5.0.0</easy-random-core.version>
   </properties>
   <dependencies>
     <!-- TEST -->
@@ -57,12 +56,6 @@
       <groupId>org.mockito</groupId>
       <artifactId>mockito-junit-jupiter</artifactId>
       <version>${mockito-core.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jeasy</groupId>
-      <artifactId>easy-random-core</artifactId>
-      <version>${easy-random-core.version}</version>
       <scope>test</scope>
     </dependency>
     <!-- LOGGING -->

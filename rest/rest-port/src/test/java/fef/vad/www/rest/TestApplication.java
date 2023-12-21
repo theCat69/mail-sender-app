@@ -14,7 +14,10 @@ public class TestApplication {
   public TestApplication() {
     context_count++;
     if(context_count > max_context_count) {
-      throw new RuntimeException(String.format("Only %d test context are authorized.", max_context_count));
+      throw new RuntimeException(String.format(
+        "Number of authorized test context exceeded. Only %d test context are authorized.",
+        max_context_count
+      ));
     }
   }
 

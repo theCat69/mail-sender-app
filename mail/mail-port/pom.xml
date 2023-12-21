@@ -14,7 +14,7 @@
   <dependencies>
     <dependency>
       <groupId>fef.vad.www</groupId>
-      <artifactId>mail-interfaces</artifactId>
+      <artifactId>core-domain</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>

@@ -1,10 +1,11 @@
 package fef.vad.www.rest.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fef.vad.www.rest.RestIT;
-import fef.vad.www.rest.dto.ContactFormDto;
 import fef.vad.www.core.dto.ContactForm;
 import fef.vad.www.core.service.ContactFormService;
+import fef.vad.www.rest.RestIT;
+import fef.vad.www.rest.dto.ContactFormDto;
+import fef.vad.www.rest.dto.FileDto;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -36,7 +37,10 @@ class MailControllerIT {
   void send_withValidBoy_shouldMapAndCallService() {
     //given
     var contactFormDto = new ContactFormDto("name", "email@mail.com",
-      "message body bllalalal", List.of("file1", "file2"));
+      "message body bllalalal", List.of(
+      new FileDto("fileName1", "file1"),
+      new FileDto("fileName2", "file2")
+    ));
     var contactFormDtoJson = objectMapper.writeValueAsString(contactFormDto);
     var contactFormCaptor = ArgumentCaptor.forClass(ContactForm.class);
     //when
@@ -58,7 +62,10 @@ class MailControllerIT {
   void send_withInValidUrl_shouldFail() {
     //given
     var contactFormDto = new ContactFormDto("name", "email@mail.com",
-      "message body bllalalal", List.of("file1", "file2"));
+      "message body bllalalal", List.of(
+      new FileDto("fileName1", "file1"),
+      new FileDto("fileName2", "file2")
+    ));
     var contactFormDtoJson = objectMapper.writeValueAsString(contactFormDto);
     //when & then
     this.mockMvc.perform(
