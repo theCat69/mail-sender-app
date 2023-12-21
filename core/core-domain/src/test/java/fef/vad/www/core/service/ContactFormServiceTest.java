@@ -2,6 +2,7 @@ package fef.vad.www.core.service;
 
 import fef.vad.www.core.dto.ContactForm;
 import fef.vad.www.core.dto.FileDomain;
+import fef.vad.www.core.exception.SendMailException;
 import fef.vad.www.mail.port.IMailPort;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
@@ -14,8 +15,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ContactFormServiceTest {
@@ -42,5 +43,17 @@ class ContactFormServiceTest {
     assertThat(argCaptor.getValue()).isEqualTo(contactForm);
   }
 
-  //TODO should had more test for failure cases
+  @Test
+  @SneakyThrows
+  void send_whenMailPortThrow_shouldRethrow() {
+    //given
+    var contactForm = new ContactForm("name", "email", "message", List.of(
+      new FileDomain("fileName1", "file1"),
+      new FileDomain("fileName2", "file2")
+    ));
+    doThrow(new SendMailException(new Exception("I am the cause"))).when(mailPort).send(contactForm);
+    //when & then
+    assertThatThrownBy(() -> contactFormService.send(contactForm))
+      .isInstanceOf(SendMailException.class);
+  }
 }
