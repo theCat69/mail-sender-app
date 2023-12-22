@@ -34,7 +34,7 @@ class MailControllerIT {
 
   @Test
   @SneakyThrows
-  void send_withValidBoy_shouldMapAndCallService() {
+  void send_withValidBody_shouldMapAndCallService() {
     //given
     var contactFormDto = getContactFormDto();
     var contactFormDtoJson = objectMapper.writeValueAsString(contactFormDto);

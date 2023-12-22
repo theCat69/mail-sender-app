@@ -1,7 +1,5 @@
 spring:
   mail:
-    password: aSimplePAssword
-    username: yourmail@gmail.com
     host: smtp.gmail.com
     port: 587
     protocol: smtp

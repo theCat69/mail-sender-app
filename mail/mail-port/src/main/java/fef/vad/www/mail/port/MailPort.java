@@ -3,6 +3,7 @@ package fef.vad.www.mail.port;
 import fef.vad.www.core.dto.ContactForm;
 import fef.vad.www.core.exception.FileDecodingException;
 import fef.vad.www.core.exception.SendMailException;
+import fef.vad.www.mail.MailConfigurationProperties;
 import fef.vad.www.mail.dto.ContactFormMailDto;
 import fef.vad.www.mail.dto.FileMailDto;
 import fef.vad.www.mail.mappers.ContactFormMailMapper;
@@ -26,6 +27,7 @@ import java.util.Base64;
 @RequiredArgsConstructor
 public class MailPort implements IMailPort {
 
+  private final MailConfigurationProperties mailConfigurationProperties;
   private final JavaMailSender emailSender;
   private final ContactFormMailMapper contactFormMailMapper = Mappers.getMapper(ContactFormMailMapper.class);
 
@@ -37,8 +39,7 @@ public class MailPort implements IMailPort {
       MimeMessage message = emailSender.createMimeMessage();
       MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-      //TODO use a property
-      helper.setTo("vadcard.felix@gmail.com");
+      helper.setTo(mailConfigurationProperties.getTo());
       helper.setFrom(contactFormMailDto.email());
       helper.setSubject(String.format("Contact from : %s", contactFormMailDto.name()));
       helper.setText(contactFormMailDto.message());

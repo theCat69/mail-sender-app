@@ -1,9 +1,8 @@
-package fef.vad.www.mail.port;
+package fef.vad.www;
 
-import fef.vad.www.core.dto.ContactForm;
-import fef.vad.www.core.dto.FileDomain;
-import fef.vad.www.mail.AppGreenMailExtension;
-import fef.vad.www.mail.MailIT;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fef.vad.www.rest.dto.ContactFormDto;
+import fef.vad.www.rest.dto.FileDto;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
@@ -11,6 +10,8 @@ import lombok.SneakyThrows;
 import org.awaitility.Awaitility;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -18,23 +19,31 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@MailIT
-class MailPortIT {
+@AppIT
+public class SendMailFullIT {
 
   @Autowired
-  MailPort mailPort;
+  ObjectMapper objectMapper;
+  @Autowired
+  MockMvc mockMvc;
 
   @Test
   @SneakyThrows
-  void send_withValidData_shouldSendMail() {
+  void send_withValidBoy_shouldSendMail() {
     //given
-    var contactForm = new ContactForm("name", "email", "message", List.of(
-      new FileDomain("fileName1.txt", getContentAsB64("file1")),
-      new FileDomain("fileName2.txt", getContentAsB64("file2"))
-    ));
+    var contactFormDto = getContactFormDto();
+    var contactFormDtoJson = objectMapper.writeValueAsString(contactFormDto);
     //when
-    mailPort.send(contactForm);
+    this.mockMvc.perform(
+        post("/mail")
+          .contentType(MediaType.APPLICATION_JSON)
+          .content(contactFormDtoJson)
+      ).andDo(print())
+      .andExpect(status().isOk());
     //then
     Awaitility.await().atMost(3, TimeUnit.SECONDS).untilAsserted(() -> {
       MimeMessage receivedMessage = AppGreenMailExtension.greenMail.getReceivedMessages()[0];
@@ -63,8 +72,14 @@ class MailPortIT {
     });
   }
 
+  private static ContactFormDto getContactFormDto() {
+    return new ContactFormDto("name", "email", "message", List.of(
+      new FileDto("fileName1.txt", getContentAsB64("file1")),
+      new FileDto("fileName2.txt", getContentAsB64("file2"))
+    ));
+  }
+
   private static String getContentAsB64(String name) {
     return Base64.getEncoder().encodeToString(name.getBytes(StandardCharsets.UTF_8));
   }
-
 }
