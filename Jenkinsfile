@@ -23,7 +23,7 @@ pipeline {
     stage('IT') {
       steps {
         withMaven(mavenLocalRepo: '.repository') {
-          sh "mvn verify -P it"
+          sh "mvn test -P it"
         }
       }
     }

@@ -8,9 +8,6 @@ spring:
           auth: true
           starttls:
             enable: true
-#          socketFactory:
-#            port: 587
-#            class: javax.net.ssl.SSLSocketFactory
   profiles:
     active: @spring-profile@
 server:
