@@ -9,7 +9,7 @@ pipeline {
     stage('Build') {
       steps {
         withMaven(mavenLocalRepo: '.repository') {
-          sh "mvn -B -DskipTests clean package"
+          sh "mvn -B -DskipTests clean package -P prod"
         }
       }
     }

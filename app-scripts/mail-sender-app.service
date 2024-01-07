@@ -6,8 +6,10 @@ After=syslog.target
 Type=simple
 User=javarunner
 WorkingDirectory=/home/javarunner/mail-sender-app
-ExecStart=/home/javarunner/mail-sender-app/app-scripts/start.sh SuccessExitStatus=143
-Restart=always
+ExecStart=/home/javarunner/mail-sender-app/app-scripts/start.sh
+ExecStop=/usr/bin/pkill -15 -P $MAINPID
+SuccessExitSatus=143
+TimeoutStopSec=3
 
 [Install]
 WantedBy=multi-user.target
