@@ -13,6 +13,7 @@ import jakarta.mail.util.ByteArrayDataSource;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mapstruct.factory.Mappers;
+import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -40,21 +41,22 @@ public class MailPort implements IMailPort {
       MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
       helper.setTo(mailConfigurationProperties.getTo());
-      helper.setFrom(contactFormMailDto.email());
-      helper.setSubject(String.format("Contact from : %s", contactFormMailDto.name()));
+      helper.setFrom(mailConfigurationProperties.getFrom());
+      helper.setSubject(String.format("Contact from %s with email address %s",
+        contactFormMailDto.name(), contactFormMailDto.email()));
       helper.setText(contactFormMailDto.message());
 
       for (FileMailDto fileMailDto : contactFormMailDto.files()) {
         try (InputStream stream = new ByteArrayInputStream(Base64.getDecoder().decode(fileMailDto.content()))) {
           helper.addAttachment(fileMailDto.name(), new ByteArrayDataSource(stream, "application/octet-stream"));
-        } catch(IOException|IllegalArgumentException e) {
+        } catch (IOException | IllegalArgumentException e) {
           throw new FileDecodingException(e);
         }
       }
 
       emailSender.send(message);
       log.info("Email with attachment sent successfully!");
-    } catch (MessagingException | FileDecodingException e) {
+    } catch (MailException | MessagingException | FileDecodingException e) {
       throw new SendMailException(e);
     }
   }

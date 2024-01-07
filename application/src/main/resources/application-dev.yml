@@ -4,3 +4,5 @@ spring:
     password: aSimplePAssword
 app-mail:
   to: test-to@mail.com
+  from: mail-from@mail.com
+

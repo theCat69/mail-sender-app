@@ -1,5 +1,10 @@
+JENKINS_SCRIPTS = 'jenkins-scripts'
+
 pipeline {
   agent any
+  environment {
+    APP_PATH = '/home/javarunner/mail-sender-app'
+  }
   stages {
     stage('Build') {
       steps {
@@ -28,6 +33,9 @@ pipeline {
           echo "Git branch : ${env.GIT_BRANCH}"
           if (env.GIT_BRANCH == "main") {
             echo "Deploying ..."
+            sh "./${JENKINS_SCRIPTS}/stop.sh"
+            sh "./${JENKINS_SCRIPTS}/deploy.sh"
+            sh "./${JENKINS_SCRIPTS}/start.sh"
             echo "Deploy success"
           } else {
             echo "No deployment for this build"

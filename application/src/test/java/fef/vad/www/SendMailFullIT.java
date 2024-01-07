@@ -50,8 +50,8 @@ public class SendMailFullIT {
 
       assertThat(receivedMessage.getAllRecipients()).hasSize(1);
       assertThat(receivedMessage.getAllRecipients()[0]).asString().isEqualTo("test-to@mail.com");
-      assertThat(receivedMessage.getFrom()[0]).asString().isEqualTo("email");
-      assertThat(receivedMessage.getSubject()).asString().contains("name");
+      assertThat(receivedMessage.getFrom()[0]).asString().isEqualTo("mail-from@mail.com");
+      assertThat(receivedMessage.getSubject()).asString().contains("name", "email@mail.com");
       assertThat(receivedMessage.getContent()).isInstanceOf(MimeMultipart.class);
       try {
         MimeMultipart mimeMultipart = (MimeMultipart) receivedMessage.getContent();
@@ -73,7 +73,7 @@ public class SendMailFullIT {
   }
 
   private static ContactFormDto getContactFormDto() {
-    return new ContactFormDto("name", "email", "message", List.of(
+    return new ContactFormDto("name", "email@mail.com", "message", List.of(
       new FileDto("fileName1.txt", getContentAsB64("file1")),
       new FileDto("fileName2.txt", getContentAsB64("file2"))
     ));

@@ -11,4 +11,5 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "app-mail")
 public class MailConfigurationProperties {
   private String to;
+  private String from;
 }

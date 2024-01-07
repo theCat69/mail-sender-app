@@ -35,7 +35,7 @@
     <greenmail.version>2.1.0-alpha-1</greenmail.version>
     <awaitility.version>4.2.0</awaitility.version>
     <commons-io.version>2.13.0</commons-io.version>
-    <maven-shade-plugin.version>3.5.0</maven-shade-plugin.version>
+    <maven-shade-plugin.version>3.5.1</maven-shade-plugin.version>
   </properties>
   <dependencies>
     <!-- TEST -->

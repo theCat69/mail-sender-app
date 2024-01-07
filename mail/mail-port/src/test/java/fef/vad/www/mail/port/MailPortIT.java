@@ -29,7 +29,7 @@ class MailPortIT {
   @SneakyThrows
   void send_withValidData_shouldSendMail() {
     //given
-    var contactForm = new ContactForm("name", "email", "message", List.of(
+    var contactForm = new ContactForm("name", "email@mail.com", "message", List.of(
       new FileDomain("fileName1.txt", getContentAsB64("file1")),
       new FileDomain("fileName2.txt", getContentAsB64("file2"))
     ));
@@ -41,8 +41,8 @@ class MailPortIT {
 
       assertThat(receivedMessage.getAllRecipients()).hasSize(1);
       assertThat(receivedMessage.getAllRecipients()[0]).asString().isEqualTo("test-to@mail.com");
-      assertThat(receivedMessage.getFrom()[0]).asString().isEqualTo("email");
-      assertThat(receivedMessage.getSubject()).asString().contains("name");
+      assertThat(receivedMessage.getFrom()[0]).asString().isEqualTo("mail-from@mail.com");
+      assertThat(receivedMessage.getSubject()).asString().contains("name", "email@mail.com");
       assertThat(receivedMessage.getContent()).isInstanceOf(MimeMultipart.class);
       try {
         MimeMultipart mimeMultipart = (MimeMultipart) receivedMessage.getContent();

@@ -7,3 +7,4 @@ spring:
     protocol: smtp
 app-mail:
   to: test-to@mail.com
+  from: mail-from@mail.com
