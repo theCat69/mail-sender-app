@@ -3,18 +3,17 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>fef.vad.www</groupId>
-    <artifactId>mail-sender-app</artifactId>
+    <artifactId>mail</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <relativePath>../../pom.xml</relativePath>
+    <relativePath>../pom.xml</relativePath>
   </parent>
-  <groupId>fef.vad.www</groupId>
   <artifactId>mail-port</artifactId>
   <packaging>jar</packaging>
 
   <dependencies>
     <dependency>
       <groupId>fef.vad.www</groupId>
-      <artifactId>mail-interfaces</artifactId>
+      <artifactId>core-domain</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
@@ -23,9 +22,30 @@
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
+      <artifactId>spring-boot-starter-mail</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>${mapstruct.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.icegreen</groupId>
+      <artifactId>greenmail-junit5</artifactId>
+      <version>${greenmail.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.icegreen</groupId>
+      <artifactId>greenmail-spring</artifactId>
+      <version>${greenmail.version}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
-
 
 </project>

@@ -3,32 +3,28 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>fef.vad.www</groupId>
-    <artifactId>rest</artifactId>
+    <artifactId>core</artifactId>
     <version>1.0-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  <artifactId>rest-port</artifactId>
+  <artifactId>core-domain</artifactId>
   <packaging>jar</packaging>
 
   <dependencies>
     <dependency>
       <groupId>fef.vad.www</groupId>
-      <artifactId>core-domain</artifactId>
+      <artifactId>core-dto</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter</artifactId>
+      <groupId>fef.vad.www</groupId>
+      <artifactId>mail-interfaces</artifactId>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
+      <groupId>fef.vad.www</groupId>
+      <artifactId>rest-interfaces</artifactId>
+      <version>${project.version}</version>
     </dependency>
   </dependencies>
-
 </project>

@@ -1,0 +1,17 @@
+spring:
+  mail:
+    host: thecatmaincave.com
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+#          socketFactory:
+#            port: 587
+#            class: javax.net.ssl.SSLSocketFactory
+  profiles:
+    active: prod
+server:
+  port: 8085

@@ -1,0 +1,13 @@
+[Unit]
+Description=Java mail sender app
+After=syslog.target
+
+[Service]
+Type=simple
+User=javarunner
+WorkingDirectory=/home/javarunner/mail-sender-app
+ExecStart=/home/javarunner/mail-sender-app/app-scripts/start.sh SuccessExitStatus=143
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

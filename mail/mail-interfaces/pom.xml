@@ -3,9 +3,9 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>fef.vad.www</groupId>
-    <artifactId>mail-sender-app</artifactId>
+    <artifactId>mail</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <relativePath>../../pom.xml</relativePath>
+    <relativePath>../pom.xml</relativePath>
   </parent>
   <artifactId>mail-interfaces</artifactId>
   <packaging>jar</packaging>
@@ -13,9 +13,8 @@
   <dependencies>
     <dependency>
       <groupId>fef.vad.www</groupId>
-      <artifactId>core</artifactId>
+      <artifactId>core-dto</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>
-
 </project>

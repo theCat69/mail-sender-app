@@ -3,14 +3,10 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>fef.vad.www</groupId>
-    <artifactId>mail-sender-app</artifactId>
+    <artifactId>core</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
   </parent>
-  <artifactId>core</artifactId>
-  <packaging>pom</packaging>
-
-  <modules>
-    <module>core-dto</module>
-    <module>core-domain</module>
-  </modules>
+  <artifactId>core-dto</artifactId>
+  <packaging>jar</packaging>
 </project>

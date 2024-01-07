@@ -22,6 +22,7 @@
   <properties>
     <java.version>21</java.version>
     <junit-jupiter-engine.version>5.10.0</junit-jupiter-engine.version>
+    <junit-jupiter-api.version>5.10.0</junit-jupiter-api.version>
     <assertj-core.version>3.24.2</assertj-core.version>
     <mockito-core.version>5.7.0</mockito-core.version>
     <logback-core.version>1.4.11</logback-core.version>
@@ -30,6 +31,11 @@
     <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
     <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
     <spring-boot.version>3.2.0</spring-boot.version>
+    <mapstruct.version>1.5.5.Final</mapstruct.version>
+    <greenmail.version>2.1.0-alpha-1</greenmail.version>
+    <awaitility.version>4.2.0</awaitility.version>
+    <commons-io.version>2.13.0</commons-io.version>
+    <maven-shade-plugin.version>3.5.1</maven-shade-plugin.version>
   </properties>
   <dependencies>
     <!-- TEST -->
@@ -37,6 +43,12 @@
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
       <version>${junit-jupiter-engine.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit-jupiter-api.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -57,6 +69,12 @@
       <version>${mockito-core.version}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.awaitility</groupId>
+      <artifactId>awaitility</artifactId>
+      <version>${awaitility.version}</version>
+      <scope>test</scope>
+    </dependency>
     <!-- LOGGING -->
     <dependency>
       <groupId>ch.qos.logback</groupId>
@@ -73,6 +91,18 @@
       <artifactId>lombok</artifactId>
       <version>${lombok.version}</version>
       <scope>provided</scope>
+    </dependency>
+    <!-- MAPPING -->
+    <dependency>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
+      <version>${mapstruct.version}</version>
+    </dependency>
+    <!-- APACHE COMMONS -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>${commons-io.version}</version>
     </dependency>
   </dependencies>
 
@@ -193,6 +223,11 @@
               <groupId>org.projectlombok</groupId>
               <artifactId>lombok</artifactId>
               <version>${lombok.version}</version>
+            </path>
+            <path>
+              <groupId>org.mapstruct</groupId>
+              <artifactId>mapstruct-processor</artifactId>
+              <version>${mapstruct.version}</version>
             </path>
           </annotationProcessorPaths>
         </configuration>
