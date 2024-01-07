@@ -33,6 +33,7 @@ pipeline {
           echo "Git branch : ${env.GIT_BRANCH}"
           if (env.GIT_BRANCH == "main") {
             echo "Deploying ..."
+            sh "chmod -R 775 ${JENKINS_SCRIPTS}"
             sh "./${JENKINS_SCRIPTS}/stop.sh"
             sh "./${JENKINS_SCRIPTS}/deploy.sh"
             sh "./${JENKINS_SCRIPTS}/start.sh"

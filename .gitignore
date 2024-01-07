@@ -37,3 +37,4 @@ build/
 
 ## Project specific ##
 application-prod.yml
+dependency-reduced-pom.xml
