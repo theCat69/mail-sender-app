@@ -12,6 +12,6 @@ spring:
 #            port: 587
 #            class: javax.net.ssl.SSLSocketFactory
   profiles:
-    active: prod
+    active: @spring-profile@
 server:
   port: 8085
