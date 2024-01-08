@@ -42,8 +42,8 @@ public class MailPort implements IMailPort {
 
       helper.setTo(mailConfigurationProperties.getTo());
       helper.setFrom(mailConfigurationProperties.getFrom());
-      helper.setSubject(String.format("Contact from %s with email address %s",
-        contactFormMailDto.name(), contactFormMailDto.email()));
+      helper.setSubject(String.format("[%s] Contact from %s",
+        contactFormMailDto.email(), contactFormMailDto.name()));
       helper.setText(contactFormMailDto.message());
 
       for (FileMailDto fileMailDto : contactFormMailDto.files()) {
