@@ -18,7 +18,7 @@ public class AppGreenMailExtension extends GreenMailExtension {
   @Override
   public void beforeAll(ExtensionContext context) {
     super.beforeAll(context);
-    greenMail = getGreenMail();
+    greenMail = super.getGreenMail();
   }
 
 }
