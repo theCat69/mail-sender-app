@@ -67,7 +67,7 @@ public class MailPort implements IMailPort {
 
     helper.setText(
       String.format(
-        "%s<br><a href=\"mailto:%s?subject:%s\">Respond<a/>",
+        "%s<br><a href=\"mailto:%s?subject=%s\">Respond<a/>",
         contactFormMailDto.message(),
         contactFormMailDto.email(),
         String.format("Re: %s", subject)
