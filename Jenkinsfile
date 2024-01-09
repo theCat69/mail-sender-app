@@ -2,7 +2,6 @@ JENKINS_SCRIPTS = 'jenkins-scripts'
 
 pipeline {
   agent any
-  options { disableConcurrentBuilds() }
   environment {
     APP_PATH = '/home/javarunner/mail-sender-app'
   }
