@@ -31,7 +31,6 @@ pipeline {
     stage('Deployment') {
       steps {
         script {
-          echo "Git branch : ${env.GIT_BRANCH}"
           if (env.GIT_BRANCH == "main") {
             echo "Deploying ..."
             sh "chmod -R 775 ${JENKINS_SCRIPTS}"
