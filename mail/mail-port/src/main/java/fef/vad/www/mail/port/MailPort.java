@@ -38,17 +38,7 @@ public class MailPort implements IMailPort {
 
     try {
       MimeMessage message = emailSender.createMimeMessage();
-      MimeMessageHelper helper = new MimeMessageHelper(message, true);
-
-      helper.setTo(mailConfigurationProperties.getTo());
-      helper.setFrom(mailConfigurationProperties.getFrom());
-      helper.setSubject(String.format("[%s] Contact from %s",
-        contactFormMailDto.email(), contactFormMailDto.name()));
-      helper.setText(
-        String.format("%s \n <a href=\"mailto:%s\">Respond<a/>",
-          contactFormMailDto.message(), contactFormMailDto.email()),
-        true
-      );
+      MimeMessageHelper helper = setupMimeMessageHelper(message, contactFormMailDto);
 
       for (FileMailDto fileMailDto : contactFormMailDto.files()) {
         try (InputStream stream = new ByteArrayInputStream(Base64.getDecoder().decode(fileMailDto.content()))) {
@@ -63,6 +53,28 @@ public class MailPort implements IMailPort {
     } catch (MailException | MessagingException | FileDecodingException e) {
       throw new SendMailException(e);
     }
+  }
+
+  private MimeMessageHelper setupMimeMessageHelper(MimeMessage message, ContactFormMailDto contactFormMailDto) throws MessagingException {
+    MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+    helper.setTo(mailConfigurationProperties.getTo());
+    helper.setFrom(mailConfigurationProperties.getFrom());
+
+    String subject = String.format("[%s] Contact from %s",
+      contactFormMailDto.email(), contactFormMailDto.name());
+    helper.setSubject(subject);
+
+    helper.setText(
+      String.format(
+        "%s<br><a href=\"mailto:%s?subject:%s\">Respond<a/>",
+        contactFormMailDto.message(),
+        contactFormMailDto.email(),
+        String.format("Re: %s", subject)
+      ),
+      true
+    );
+    return helper;
   }
 
 }
