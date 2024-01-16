@@ -11,14 +11,14 @@ public class AppGreenMailExtension extends GreenMailExtension {
 
   public AppGreenMailExtension() {
     super(new ServerSetup(0, null, ServerSetup.PROTOCOL_SMTP));
-    super.withConfiguration(GreenMailConfiguration.aConfig().withUser("user", "admin"));
-    super.withPerMethodLifecycle(false);
+    withConfiguration(GreenMailConfiguration.aConfig().withUser("user", "admin"));
+    withPerMethodLifecycle(false);
   }
 
   @Override
   public void beforeAll(ExtensionContext context) {
     super.beforeAll(context);
-    greenMail = super.getGreenMail();
+    greenMail = getGreenMail();
   }
 
 }

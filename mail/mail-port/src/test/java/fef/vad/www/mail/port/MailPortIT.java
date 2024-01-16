@@ -9,8 +9,10 @@ import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
 import lombok.SneakyThrows;
 import org.awaitility.Awaitility;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -24,6 +26,13 @@ class MailPortIT {
 
   @Autowired
   MailPort mailPort;
+  @Autowired
+  JavaMailSenderImpl javaMailSender;
+
+  @BeforeEach
+  void setUp() {
+    javaMailSender.setPort(AppGreenMailExtension.greenMail.getSmtp().getPort());
+  }
 
   @Test
   @SneakyThrows

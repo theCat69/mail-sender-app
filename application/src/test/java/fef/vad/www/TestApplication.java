@@ -1,9 +1,7 @@
 package fef.vad.www;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@Slf4j
 @SpringBootApplication
 public class TestApplication {
   private static int context_count = 0;
