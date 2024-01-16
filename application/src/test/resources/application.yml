@@ -3,7 +3,6 @@ spring:
     username: user
     password: admin
     host: 127.0.0.1
-    port: 3025
     protocol: smtp
 app-mail:
   to: test-to@mail.com

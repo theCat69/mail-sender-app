@@ -1,16 +1,17 @@
 package fef.vad.www.rest.controller;
 
+import fef.vad.www.core.exception.SendMailException;
+import fef.vad.www.core.service.ContactFormService;
 import fef.vad.www.rest.dto.ContactFormDto;
 import fef.vad.www.rest.dto.ContactFormResponseDto;
 import fef.vad.www.rest.mappers.ContactFormRestMapper;
-import fef.vad.www.core.exception.SendMailException;
-import fef.vad.www.core.service.ContactFormService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.mapstruct.factory.Mappers;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Slf4j
 @RestController
 @RequestMapping("/mail")
 @RequiredArgsConstructor

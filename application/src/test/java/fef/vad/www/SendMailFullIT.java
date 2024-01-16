@@ -8,9 +8,11 @@ import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
 import lombok.SneakyThrows;
 import org.awaitility.Awaitility;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.nio.charset.StandardCharsets;
@@ -30,6 +32,13 @@ public class SendMailFullIT {
   ObjectMapper objectMapper;
   @Autowired
   MockMvc mockMvc;
+  @Autowired
+  JavaMailSenderImpl javaMailSender;
+
+  @BeforeEach
+  void setUp() {
+    javaMailSender.setPort(AppGreenMailExtension.greenMail.getSmtp().getPort());
+  }
 
   @Test
   @SneakyThrows
