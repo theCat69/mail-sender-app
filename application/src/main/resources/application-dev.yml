@@ -6,3 +6,8 @@ spring:
 app-mail:
   to: test-to@mail.com
   from: mail-from@mail.com
+
+server:
+  ssl:
+    key-store: "tls/localhost.jks"
+    key-store-password: changeit
