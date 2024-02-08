@@ -36,7 +36,7 @@ mvn test -P ut
 
 Run integration test :
 ```shell
-mvn verify -P it
+mvn test -P it
 ```
 
 Build for production :
